@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -25,6 +27,21 @@ namespace LocationApp
         public MainPage()
         {
             this.InitializeComponent();
+            for(int i=0; i<4; i++)
+                GetPostion();
+        }
+        private async void GetPostion()
+        {
+            Geoposition postion = null;
+            try
+            {
+                postion = await LocationManager.GetLocation();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.StackTrace);
+            }
+            NowLocation.Text = postion.Coordinate.Latitude + " : " + postion.Coordinate.Longitude;
         }
     }
 }

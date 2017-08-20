@@ -8,6 +8,9 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <StackPanel>
+            <TextBlock>현재위치</TextBlock>
+            <TextBlock x:Name="NowLocation"></TextBlock>
+        </StackPanel>
     </Grid>
 </Page>
